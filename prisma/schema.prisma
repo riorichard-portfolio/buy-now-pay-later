@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/.prisma.generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserType {
+  MERCHANT
+  CUSTOMER
+}
+
+model User {
+  id         String   @id @default(uuid())
+  email          String   @unique
+  hashedPassword String
+  type           UserType
+}
